@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Михаил Гауташ — продуктовый дизайнер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#010001; --card:#1A1A1A; --violet:#572DCE; --violet-deep:#4423CC;
+    --pink:#FF447C; --orange:#FF9E0D; --muted:#E1E1E1;
+    --f-head:"Montserrat",system-ui,sans-serif; --f-body:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:#fff;font:400 14px/20px var(--f-body);
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1440px;margin:0 auto;padding-inline:50px}
+
+  /* ---------- header ---------- */
+  .header{position:relative;z-index:10;padding-top:20px}
+  .logo{display:inline-block;width:40px}
+  .logo img{width:40px;aspect-ratio:28/29}
+
+  /* ---------- hero ---------- */
+  .hero{margin-top:-46px}
+  .hero__row{display:flex;align-items:center}
+  .hero__text{width:50%;display:flex;flex-direction:column;align-items:flex-start}
+  .hero__media{width:50%}
+  .hero__media img{width:100%;aspect-ratio:1413/1576}
+  .grad-text{background-clip:text;-webkit-background-clip:text;color:transparent}
+  .hero__title{font:900 85px/90px var(--f-head);margin:20px 0 10px;
+    background-image:linear-gradient(271deg,var(--violet-deep) 11%,#fff 80%)}
+  .btn-play{margin-top:36px;display:inline-flex;align-items:center;gap:6px;
+    padding:12px 14px;border:1.6px solid var(--orange);border-radius:15px;
+    color:var(--orange);font:800 18px/28px var(--f-head);
+    transition:background .2s,color .2s}
+  .btn-play svg{width:24px;height:24px;flex:none}
+  .btn-play:hover{background:var(--orange);color:#0c0c0c}
+  .btn-play:hover svg path{fill:#0c0c0c}
+
+  /* ---------- about ---------- */
+  .about{position:relative;background:var(--violet);border-radius:70px;overflow:hidden;
+    padding-top:131px;margin-bottom:192px}
+  .about__inner{display:flex;flex-direction:column;align-items:center}
+  .about__text{color:var(--pink);font:900 55px/70px var(--f-head);margin-bottom:10px}
+  .about__text p + p{margin-top:70px}
+  .about__phone{width:574.5px;max-width:100%;margin:11px 0 -330px;padding-inline:50px}
+  .about__phone img{width:100%;aspect-ratio:1149/1724}
+
+  /* ---------- portfolio ---------- */
+  .portfolio{margin-top:10px}
+  .section-title{font:900 55px/55px var(--f-head);margin:20px 0 39px;
+    background-image:linear-gradient(263deg,var(--violet-deep) 65%,#fff 100%)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .card{background:var(--card);border-radius:20px;overflow:hidden;display:block}
+  .card__img{border-radius:20px;overflow:hidden;background:repeating-linear-gradient(135deg,#202020 0 14px,#262626 14px 28px)}
+  .card__img img{width:100%;aspect-ratio:101/79;object-fit:cover;transition:transform .5s ease}
+  .card:hover .card__img img{transform:scale(1.03)}
+  .card__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:25px 10px 25px 30px}
+  .card__name{font:700 24px/30px var(--f-head);margin-bottom:5px}
+  .card__desc{color:var(--muted)}
+  .card__arrow{width:36px;height:36px;flex:none;opacity:.8;transition:transform .2s,opacity .2s}
+  .card:hover .card__arrow{transform:translateX(4px);opacity:1}
+
+  /* ---------- old work ---------- */
+  .old{padding:0 0 137px}
+  .old__inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .old__title{font:900 35px/44px var(--f-head);margin:20px 0 10px;
+    background-image:linear-gradient(266deg,var(--violet) 0%,#fff 80%)}
+  .old__sub{color:var(--muted);font-size:18px;line-height:26px;margin-bottom:10px}
+  .btn-outline{margin-top:15px;padding:16px 22px;background:#0C0C0C;border:1.6px solid var(--violet);
+    border-radius:10px;font:900 18px/20px var(--f-head);color:#fff;transition:background .2s}
+  .btn-outline:hover{background:var(--violet)}
+  .footer-space{height:320px;background:linear-gradient(180deg,#000 0%,rgba(43,43,43,0) 100%)}
+
+  /* ---------- floating contact ---------- */
+  .contact{position:fixed;right:3%;bottom:15px;z-index:100;height:50px;display:flex;align-items:center;
+    gap:13px;padding:15px 20px 15px 15px;border-radius:20px;background:rgba(255,49,22,.75);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    color:var(--muted);font:800 15px/18px var(--f-head);transition:background .2s}
+  .contact:hover{background:rgba(255,49,22,.95)}
+  .contact svg{width:54px;height:24px;opacity:.7}
+
+  /* ---------- image placeholders (until real images are added to img/) ---------- */
+  .hero__media,.about__phone,.card__img{position:relative}
+  img.ph{visibility:hidden}
+  .ph-box{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    border-radius:20px;color:rgba(255,255,255,.45);font:700 14px/18px var(--f-head);text-align:center;padding:16px;
+    background:repeating-linear-gradient(135deg,#202020 0 14px,#262626 14px 28px)}
+  .hero__media .ph-box{inset:4% 6%;border-radius:32px}
+  .about__phone .ph-box{inset:0 50px;border-radius:48px;background:repeating-linear-gradient(135deg,#4b25b8 0 14px,#5229c4 14px 28px);color:rgba(255,255,255,.6)}
+  .logo-ph{display:none;width:40px;height:41px;border-radius:10px;align-items:center;justify-content:center;
+    font:900 26px/1 var(--f-head);background:linear-gradient(135deg,#7b5cff,#4423CC)}
+  .logo.no-img img{display:none}.logo.no-img .logo-ph{display:flex}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1200px){
+    .hero__title{font-size:64px;line-height:70px}
+    .about__text{font-size:42px;line-height:54px}
+    .about__text p + p{margin-top:54px}
+  }
+  @media (max-width:900px){
+    .wrap{padding-inline:20px}
+    .hero{margin-top:0}
+    .hero__row{flex-direction:column-reverse}
+    .hero__text,.hero__media{width:100%}
+    .hero__title{font-size:48px;line-height:54px}
+    .btn-play{margin-top:16px;font-size:16px}
+    .about{border-radius:36px;padding-top:64px;margin-bottom:120px}
+    .about__text{font-size:28px;line-height:36px}
+    .about__text p + p{margin-top:36px}
+    .about__phone{width:420px;margin-bottom:-240px;padding-inline:20px}
+    .section-title{font-size:40px;line-height:44px;margin-bottom:24px}
+    .grid{grid-template-columns:1fr}
+    .card__foot{padding:20px 10px 20px 20px}
+    .card__name{font-size:20px;line-height:26px}
+    .old__title{font-size:28px;line-height:36px}
+    .old__sub{font-size:16px;line-height:24px}
+    .footer-space{height:160px}
+  }
+  @media (max-width:480px){
+    .hero__title{font-size:38px;line-height:44px}
+    .about__text{font-size:22px;line-height:29px}
+    .about__phone{width:320px;margin-bottom:-180px}
+  }
+</style>
+<script>
+  // Если картинки ещё нет в папке img/, показываем аккуратную заглушку вместо «битой» иконки
+  window.addEventListener("error", e => {
+    const img = e.target;
+    if (img.tagName !== "IMG" || img.dataset.ph) return;
+    img.dataset.ph = 1;
+    if (img.closest(".logo")) { img.closest(".logo").classList.add("no-img"); return; }
+    img.classList.add("ph");
+    const box = document.createElement("div");
+    box.className = "ph-box";
+    box.textContent = img.dataset.label || img.alt;
+    img.parentElement.appendChild(box);
+  }, true);
+</script>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="На главную"><img src="img/logo.png" alt="Логотип"><span class="logo-ph">G</span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__row">
+      <div class="hero__text">
+        <h1 class="hero__title grad-text">10 лет делаю то, что любят люди</h1>
+        <a class="btn-play" href="#">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF9E0D" fill-rule="evenodd" d="M5.286 3.194C6.106 2.824 7.031 3.017 7.77 3.469L7.8 3.487L18.51 11.092C19.263 11.523 19.998 12.203 20 13.189C20.001 14.167 19.272 14.88 18.52 15.355L7.893 22.522L7.847 22.547C7.078 22.957 6.133 23.208 5.289 22.773C4.42 22.326 4.103 21.387 4.047 20.48L4.046 20.45L4.001 5.471C3.982 4.478 4.404 3.591 5.286 3.194Z"/></svg>
+          Познакомиться со мной (5 мин)
+        </a>
+      </div>
+      <div class="hero__media">
+        <img src="img/hero.webp" width="1413" height="1576" data-label="Фото: Михаил Гауташ"
+             alt="Михаил Гауташ — продуктовый дизайнер (UX/UI), IT-предприниматель, основатель Lyra, автор книги «Дизайн, фриланс и деревня»">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about__inner">
+    <div class="about__text">
+      <p>С 2014 в дизайне.<br>Прошел путь от графического до продуктового дизайнера (UX/UI).</p>
+      <p>С 2020 сфокусировался на IT-продуктах: ежедневно работаю над сервисами, платформами и приложениями. Благодаря фокусу достиг мастерства.</p>
+      <p>Создал приложение Lyra: более 800 отзывов со средней оценкой ★4.6.<br>Умею создавать продукты, которые любят люди.</p>
+    </div>
+    <div class="about__phone">
+      <img src="img/lyra-phone.webp" width="1149" height="1724" alt="Страница приложения Lyra в App Store" data-label="Скриншот Lyra в App Store" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <h2 class="section-title grad-text">Портфолио</h2>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="old">
+  <div class="wrap old__inner">
+    <h2 class="old__title grad-text">Каким был мой дизайн с 2014 по 2019</h2>
+    <p class="old__sub">До того, как я полностью ушел в it-продукты</p>
+    <a class="btn-outline" href="#">Посмотреть</a>
+  </div>
+</section>
+
+<div class="footer-space" aria-hidden="true"></div>
+
+<a class="contact" href="#">
+  Напишите мне
+  <svg viewBox="0 0 54 24" aria-label="Telegram">
+    <path fill="#fff" d="M11.994 2C10.016 2 8.083 2.586 6.438 3.685C4.794 4.784 3.512 6.346 2.755 8.173C1.998 10 1.8 12.011 2.186 13.951C2.572 15.891 3.525 17.672 4.923 19.071C6.322 20.47 8.103 21.422 10.043 21.808C11.983 22.194 13.994 21.996 15.821 21.239C17.648 20.482 19.21 19.2 20.309 17.556C21.408 15.911 21.994 13.978 21.994 12C21.994 10.687 21.736 9.386 21.233 8.173C20.731 6.96 19.994 5.857 19.066 4.929C18.137 4 17.034 3.263 15.821 2.761C14.608 2.258 13.307 2 11.994 2ZM15.174 17.152C15.136 17.246 15.079 17.33 15.007 17.4C14.934 17.469 14.847 17.522 14.752 17.556C14.658 17.589 14.557 17.602 14.457 17.593C14.356 17.584 14.259 17.553 14.172 17.504L11.457 15.395L9.715 17.002C9.674 17.032 9.627 17.051 9.577 17.058C9.527 17.065 9.477 17.059 9.43 17.041L9.764 14.053L9.774 14.061L9.781 14.002C9.781 14.002 14.666 9.554 14.865 9.365C15.067 9.176 15 9.135 15 9.135C15.012 8.904 14.639 9.135 14.639 9.135L8.166 13.299L5.471 12.381C5.471 12.381 5.057 12.232 5.018 11.906C4.977 11.582 5.484 11.406 5.484 11.406L16.201 7.148C16.201 7.148 17.082 6.756 17.082 7.406L15.174 17.152Z"/>
+    <path fill="#fff" d="M48.291 11.62H52.391V17.54C51.564 18.113 50.604 18.553 49.511 18.86C48.417 19.167 47.344 19.32 46.291 19.32C44.797 19.32 43.457 19.013 42.271 18.4C41.084 17.773 40.151 16.907 39.471 15.8C38.804 14.68 38.471 13.413 38.471 12C38.471 10.587 38.804 9.327 39.471 8.22C40.151 7.1 41.091 6.233 42.291 5.62C43.504 4.993 44.871 4.68 46.391 4.68C47.764 4.68 48.991 4.913 50.071 5.38C51.164 5.833 52.071 6.5 52.791 7.38L49.771 10.04C48.891 9.013 47.844 8.5 46.631 8.5C45.591 8.5 44.764 8.813 44.151 9.44C43.537 10.067 43.231 10.92 43.231 12C43.231 13.053 43.531 13.9 44.131 14.54C44.744 15.18 45.557 15.5 46.571 15.5C47.171 15.5 47.744 15.387 48.291 15.16V11.62Z"/>
+    <path fill="#fff" d="M29.18 8.66H25.08V5H38V8.66H33.9V19H29.18V8.66Z"/>
+  </svg>
+</a>
+
+<script>
+  const projects = [
+    ["hrd","HRD","Мобильное приложение в сфере HR. NEW2024."],
+    ["flatchat","FlatChat","Мобильное приложение в сфере недвижимости"],
+    ["uznalyub","Узналюб","Мобильное приложение в сфере EdTech"],
+    ["dental","Dental Portal","Портал-маркетплейс в сфере стоматологии"],
+    ["lyra","Lyra","Основал стартап. Приложение по обучению дизайну в формате игры"],
+    ["olympiad","Олимпиада","Платформа для проведения олимпиады (от пятерочки)"],
+    ["foodle","Foodle","Редизайн приложения по предзаказу в кафе и ресторанах"],
+    ["delimoney","DeliMoney","Мобильное приложение по теме совместных закупок"],
+    ["autostels","Автостэлс","Редизайн платформы по продаже автозапчастей"],
+    ["zabota","Забота 2.0","Редизайн windows-приложения в сфере HealthTech"]
+  ];
+  const arrow = '<svg class="card__arrow" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="none" stroke="#fff" stroke-opacity=".35"/><path d="M15 12l6 6-6 6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  document.getElementById("grid").innerHTML = projects.map(([slug,name,desc]) => `
+    <a class="card" href="#">
+      <div class="card__img"><img src="img/${slug}.webp" width="1010" height="790" alt="${name} — ${desc}" data-label="Обложка: ${name}" loading="lazy"></div>
+      <div class="card__foot">
+        <div><div class="card__name">${name}</div><div class="card__desc">${desc}</div></div>
+        ${arrow}
+      </div>
+    </a>`).join("");
+</script>
+</body>
+</html>
